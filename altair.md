@@ -106,3 +106,20 @@ trends_line_chart_small=alt.Chart(trends).mark_line().encode(
     selection = select_interval
 )
 ```
+
+# LAYERING
+```python
+# LAYER 01. MAPA DE MADRID PARA USARLO COMO FONDO
+madrid = alt.Chart(mad).mark_geoshape()
+# LAYER 02. LOCALIZACION POR LATITUD Y LOGNTUD DE BARES UBICADOS EN MAPA DE MADRID SEÑALADOS COMO PUNTOS
+points = alt.Chart(bardf).mark_circle().encode(
+    longitude = "lon",
+    latitude = "lat",
+    size = alt.value(10),
+    color = alt.value("orange")
+)
+# LAYERING. 
+# ALTAIR CON EL OPERADOR DE LAYERING "+" 
+# MUESTRA LOS GRAFICOS DE CADA LAYER UNO SOBRE OTRO EN LA MISMA VISUALIZACION
+madrid+points
+```
